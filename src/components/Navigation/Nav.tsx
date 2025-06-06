@@ -2,99 +2,127 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navData = ["Services", "Projects", "Testimonials", "Contact"];
 
     return (
-        <div className="w-full flex justify-center fixed top-[25px] left-[230px] r-[230px] bottom-[711px]">
+        <div className="fixed top-0 left-0 right-0 flex flex-col items-center px-4 py-6 z-50">
             {/* Desktop Navigation */}
-            <nav className='relative flex items-center justify-between max-w-[1350px] w-[840px] h-[64px] px-8 my-4 bg-[#111111]/70 backdrop-blur-md rounded-full border border-white/10 md:flex hidden'
-                style={{boxShadow:"0px 1px 2px rgba(0, 0, 0, 0.25)"}}>
-                
-                {/* Logo */}
-                <div className="flex items-center gap-1">
-                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                        <span className="text-white text-lg">+</span>
-                    </div>
-                    <Link href="/" className="text-xl font-semibold text-white">
-                        Polo
-                    </Link>
-                </div>
+            <nav className='relative items-center justify-between max-w-[1350px] w-[840px] h-[64px] px-10 space-x-8 bg-[#111111]/70 backdrop-blur-md rounded-full border border-white/10 lg:flex hidden'
+                style={{ boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.25)" }}>
+
+                <Logo />
 
                 {/* Navigation Links */}
-                <div className="flex gap-10">
+                <div className="flex mx-auto space-x-2">
                     {navData.map((item, index) => (
-                        <Link 
-                            key={index} 
+                        <Link
+                            key={index}
                             href={`/${item.toLowerCase()}`}
-                            className="text-[#888] hover:text-white transition-colors"
+                            className="py-1.5 px-3 text-[#FFFFFF]/60 text-[15px] font-semibold leading-[2] hover:text-[#FFFFFF] transition-colors"
                         >
                             {item}
                         </Link>
                     ))}
                 </div>
 
-                {/* Get for Free Button */}
-                <button className="flex items-center gap-2 px-5 py-2 bg-[#111111] text-[#888] rounded-full border border-white/10 hover:text-white hover:border-white/20 transition-all">
+                <p
+                    className="flex items-center space-x-1.5 px-5 py-2 h-12 bg-[#111111] backdrop-blur-[5px] text-[#888] rounded-full border border-white/10 relative hover:cursor-pointer"
+                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0px 1px 2px 0px rgba(0, 0, 0, 0.5)"}
+                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = "inset 0px -8px 10px 0px rgba(0, 0, 0, 0.5)"}
+                >
                     <span className="text-base">✨</span>
                     Get for Free
-                </button>
+                </p>
             </nav>
 
-            {/* Mobile Navigation */}
-            <nav className='relative flex items-center justify-between max-w-[1350px] w-[390px] h-[64px] px-4 my-4 bg-[#0A0A0A]ww backdrop-blur-md rounded-full border border-[#222222] md:hidden'
-                style={{boxShadow:"0px 1px 2px rgba(0, 1, 2, 0)"}}>
-                
-                {/* Logo */}
-                <div className="flex items-center gap-1">
-                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                        <span className="text-white text-lg">+</span>
-                    </div>
-                    <Link href="/" className="text-xl font-semibold text-white">
-                        Polo
-                    </Link>
-                </div>
+            {/* Mobile Navigation Container */}
+            <div className="relative w-full max-w-[840px] lg:hidden">
+                {/* Mobile Navigation Bar with Menu */}
+                <div className="relative">
+                    <nav className={`flex items-center justify-between h-[64px] px-5 bg-[#0A0A0A] backdrop-blur-lg ${isMenuOpen ? "rounded-t-[32px]" : "rounded-[32px]"
+                        } border border-[#222222]/40 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
+                        {/* Logo */}
+                        <Logo></Logo>
 
-                {/* Hamburger Button */}
-                <button 
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white"
-                >
-                    {isMenuOpen ? (
-                        <span className="text-2xl">×</span>
-                    ) : (
-                        <span className="text-xl">≡</span>
-                    )}
-                </button>
-            </nav>
-
-            {/* Mobile Menu Panel */}
-            {isMenuOpen && (
-                <div className="fixed inset-0 bg-[#111111] z-50 md:hidden">
-                    <div className="flex flex-col items-start p-6 pt-24">
-                        {navData.map((item, index) => (
-                            <Link 
-                                key={index} 
-                                href={`/${item.toLowerCase()}`}
-                                className="text-[#888] hover:text-white transition-colors py-4 text-lg"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item}
-                            </Link>
-                        ))}
-                        <button 
-                            className="flex items-center gap-2 px-5 py-2 bg-[#111111] text-[#888] rounded-full border border-white/10 hover:text-white hover:border-white/20 transition-all mt-6"
-                            onClick={() => setIsMenuOpen(false)}
+                        {/* Hamburger Button */}
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className={`w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ${isMenuOpen
+                                ? 'bg-white/5 text-white'
+                                : 'bg-white/10 text-white/90 hover:bg-white/15 hover:text-white'
+                                }`}
                         >
-                            <span className="text-base">✨</span>
-                            Get for Free
+                            {isMenuOpen ? (
+                                <span className="text-xl">×</span>
+                            ) : (
+                                <span className="text-lg">≡</span>
+                            )}
                         </button>
+                    </nav>
+
+                    {/* Menu Panel */}
+                    <div
+                        className={`absolute top-[55px] left-0 right-0 bg-[#0A0A0A]/90 backdrop-blur-lg border-x border-b border-[#222222]/40 rounded-b-[28px] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isMenuOpen ? 'opacity-100 max-h-[420px]' : 'opacity-0 max-h-0'
+                            }`}
+                        style={{
+                            transitionProperty: 'max-height, opacity, border-radius',
+                        }}
+                    >
+                        <div className={`px-5 py-8 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isMenuOpen ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-4'
+                            }`}
+                            style={{
+                                transitionDelay: isMenuOpen ? '150ms' : '0ms'
+                            }}
+                        >
+                            {/* Menu Items */}
+                            <div className="flex flex-col space-y-6">
+                                <div className="flex flex-col space-x-2">
+                                    {navData.map((item, index) => (
+                                        <Link
+                                            key={index}
+                                            href={`/${item.toLowerCase()}`}
+                                            className="py-1.5 px-3 text-[#FFFFFF]/60 text-[15px] font-semibold leading-[2] hover:text-[#FFFFFF] transition-colors"
+                                        >
+                                            {item}
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                {/* Get for Free Button */}
+                                <div className="pt-4">
+                                    <p
+                                        className="flex max-w-fit items-center space-x-1.5 px-5 py-2 h-12 bg-[#111111] backdrop-blur-[5px] text-[#888] rounded-full border border-white/10 relative hover:cursor-pointer"
+                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0px 1px 2px 0px rgba(0, 0, 0, 0.5)"}
+                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = "inset 0px -8px 10px 0px rgba(0, 0, 0, 0.5)"}
+                                    >
+                                        <span className="text-base">✨</span>
+                                        Get for Free
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            )}
+            </div>
         </div>
+    )
+}
+
+const Logo = () => {
+    return (
+        <Link href="/" className="flex items-center space-x-2">
+            <Image
+                src="/logo.svg"
+                alt="Polo Logo"
+                width={24}
+                height={24}
+                className="w-20 h-6"
+            />
+        </Link>
     )
 }
 
