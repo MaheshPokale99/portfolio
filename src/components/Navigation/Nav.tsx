@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { MenuButton } from './MenuButton'
+import Logo from './Logo'
 
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +42,6 @@ const Nav = () => {
 
             {/* Mobile Navigation Container */}
             <div className="relative w-full max-w-[840px] lg:hidden">
-                {/* Mobile Navigation Bar with Menu */}
                 <div className="relative">
                     <nav className={`flex items-center justify-between h-[64px] px-5 bg-[#0A0A0A] backdrop-blur-lg ${isMenuOpen ? "rounded-t-[32px]" : "rounded-[32px]"
                         } border border-[#222222]/40 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
@@ -49,19 +49,7 @@ const Nav = () => {
                         <Logo></Logo>
 
                         {/* Hamburger Button */}
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className={`w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ${isMenuOpen
-                                ? 'bg-white/5 text-white'
-                                : 'bg-white/10 text-white/90 hover:bg-white/15 hover:text-white'
-                                }`}
-                        >
-                            {isMenuOpen ? (
-                                <span className="text-xl">×</span>
-                            ) : (
-                                <span className="text-lg">≡</span>
-                            )}
-                        </button>
+                        <MenuButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
                     </nav>
 
                     {/* Menu Panel */}
@@ -75,7 +63,7 @@ const Nav = () => {
                         <div className={`px-5 py-8 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isMenuOpen ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-4'
                             }`}
                             style={{
-                                transitionDelay: isMenuOpen ? '150ms' : '0ms'
+                                transitionDelay: isMenuOpen ? '250ms' : '0ms'
                             }}
                         >
                             {/* Menu Items */}
@@ -112,18 +100,5 @@ const Nav = () => {
     )
 }
 
-const Logo = () => {
-    return (
-        <Link href="/" className="flex items-center space-x-2">
-            <Image
-                src="/logo.svg"
-                alt="Polo Logo"
-                width={24}
-                height={24}
-                className="w-20 h-6"
-            />
-        </Link>
-    )
-}
 
 export default Nav
