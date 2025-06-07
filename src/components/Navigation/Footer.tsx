@@ -2,22 +2,23 @@
 import React from 'react'
 import Logo from './Logo'
 import Link from 'next/link';
-import { TwitterIcon, InstagramIcon, LinkedinIcon, GitHubIcon } from '../Icons/SocialIcons'
+import { TwitterIcon, InstagramIcon, LinkedinIcon, GitHubIcon, LeetCodeIcon } from '../Icons/SocialIcons'
 
 
 const Footer = () => {
     const navData = ["Services", "Projects", "Testimonials", "Contact"];
     const socialLinks = [
-        { name: "GitHub", icon: <GitHubIcon />, href: "#" },
-        { name: "Linkedin", icon: <LinkedinIcon />, href: "#" },
-        { name: "Twitter", icon: <TwitterIcon />, href: "#" },
-        { name: "Instagram", icon: <InstagramIcon />, href: "#" },
+        { name: "GitHub", icon: <GitHubIcon />, href: "https://github.com/MaheshPokale99" },
+        { name: "Linkedin", icon: <LinkedinIcon />, href: "https://www.linkedin.com/in/maheshpokale99/" },
+        { name: "Instagram", icon: <LeetCodeIcon />, href: "https://leetcode.com/u/Mahesh_pokale99/" },
+        { name: "Twitter", icon: <TwitterIcon />, href: "https://x.com/MPokale42883" },
+        { name: "Instagram", icon: <InstagramIcon />, href: "https://www.instagram.com/maheshpokale99/" },
     ]
 
     return (
-        <div className='flex flex-col max-w-[1220px] h-fit gap-8 mt-48 px-10 py-[100px]'>
+        <div className='mt-64 flex flex-col mx-auto max-w-[1220px] h-fit gap-8 px-[18px] pt-16 pb-12 md:px-10 md:py-[100px]'>
             {/* top */}
-            <div className='flex justify-between'>
+            <div className='flex flex-col gap-10 md:gap-0 md:flex-row justify-between'>
                 {/* left */}
                 <div className='flex flex-col max-w-[1120px] h-fit gap-[60px]'>
                     {/* logo */}
@@ -26,7 +27,7 @@ const Footer = () => {
                     </div>
 
                     {/* links */}
-                    <div>
+                    <div className='flex flex-col gap-6 md:gap-0 md:flex-row'>
                         {navData.map((item, index) => (
                             <Link
                                 key={index}
@@ -44,7 +45,7 @@ const Footer = () => {
                         <Link
                             key={index}
                             href={social.href}
-                            className="text-[#666] w-10 h-10 rounded-full hover:text-white transition-colors"
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-[#111111] transition-colors duration-300"
                             aria-label={social.name}
                         >
                             {social.icon}
