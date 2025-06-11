@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { MenuButton } from './MenuButton'
+import { MenuButton } from '../Buttons/MenuButton'
 import Logo from './Logo'
 
 const Nav = () => {
@@ -18,7 +18,7 @@ const Nav = () => {
                 <Logo />
 
                 {/* Navigation Links */}
-                <div className="flex mx-auto space-x-2">
+                <div className="flex mx-auto space-x-2 mr-4">
                     {navData.map((item, index) => (
                         <Link
                             key={index}
@@ -31,12 +31,12 @@ const Nav = () => {
                 </div>
 
                 <p
-                    className="flex items-center space-x-1.5 px-5 py-2 h-12 bg-[#111111] backdrop-blur-[5px] text-[#888] rounded-full border border-white/10 relative hover:cursor-pointer"
+                    className="flex items-center space-x-1.5 px-5 py-2 h-11 w-42 bg-[#111111] backdrop-blur-[5px] text-[#888] rounded-full border border-white/10 relative hover:cursor-pointer"
                     onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0px 1px 2px 0px rgba(0, 0, 0, 0.5)"}
                     onMouseLeave={(e) => e.currentTarget.style.boxShadow = "inset 0px -8px 10px 0px rgba(0, 0, 0, 0.5)"}
                 >
                     <span className="text-base">✨</span>
-                    Get for Free
+                    Reach out
                 </p>
             </nav>
 
@@ -88,7 +88,7 @@ const Nav = () => {
                                         onMouseLeave={(e) => e.currentTarget.style.boxShadow = "inset 0px -8px 10px 0px rgba(0, 0, 0, 0.5)"}
                                     >
                                         <span className="text-base">✨</span>
-                                        Get for Free
+                                        Reach Out
                                     </p>
                                 </div>
                             </div>
