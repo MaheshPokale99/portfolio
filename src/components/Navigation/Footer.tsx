@@ -2,6 +2,8 @@
 import React from 'react'
 import Logo from './Logo'
 import Link from 'next/link';
+import Image from 'next/image'
+
 import { TwitterIcon, InstagramIcon, LinkedinIcon, GitHubIcon, LeetCodeIcon } from '../Icons/SocialIcons'
 
 
@@ -54,7 +56,18 @@ const Footer = () => {
                 </div>
             </div>
             {/* bottom */}
-            <div></div>
+            <div>
+                <div className='flex items-center cursor-pointer'>
+                    <span>Made by</span>
+                    <Image
+                        src="/mahesh.svg"
+                        alt="Mahesh"
+                        width={24}
+                        height={24}
+                        className="w-30 h-7"
+                    />
+                </div>
+            </div>
         </div>
     )
 }
