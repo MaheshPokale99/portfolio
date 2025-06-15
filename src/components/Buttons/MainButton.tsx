@@ -9,7 +9,7 @@ interface MainButtonProps {
   variant?: 'dark' | 'light';
 }
 
-const MainButton: React.FC<MainButtonProps> = ({ name, href = "#", variant = 'dark' }) => {
+const MainButton: React.FC<MainButtonProps> = ({ name, href = "", variant = 'dark' }) => {
   return (
     <motion.a
       href={href}
@@ -19,9 +19,10 @@ const MainButton: React.FC<MainButtonProps> = ({ name, href = "#", variant = 'da
       whileTap={{ y: 1 }}
       transition={{
         type: "spring",
-        stiffness: 400,
-        damping: 30,
+        stiffness: 500,
+        damping: 60,
         mass: 1,
+        delay:0
       }}
       className={`
         inline-flex justify-center items-center py-4 px-8 rounded-full

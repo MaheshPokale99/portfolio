@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, FormEvent } from 'react';
-import SubmitButton from "@/src/components/Buttons/SubmitButton";
-import HeadingButton from "@/src/components/Buttons/HeadingButton";
-import InputField from "@/src/components/Elements/InputField";
+import SubmitButton from "../../components/Buttons/SubmitButton";
+import HeadingButton from "../../components/Buttons/HeadingButton";
+import InputField from "../../components/Elements/InputField";
+import CTASection from '@/src/components/Sections/CTASection';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -26,9 +27,7 @@ export default function Contact() {
         setIsLoading(true);
         
         try {
-            // Add your form submission logic here
             console.log('Form data:', formData);
-            // Reset form after successful submission
             setFormData({ name: '', email: '', message: '' });
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -38,7 +37,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-black px-4">
+        <div className="">
             {/* contact */}
             <section className="max-w-[1300px] mx-auto pt-[160px] pb-[100px]">
                 <div className="flex flex-col items-center gap-12">
@@ -97,6 +96,7 @@ export default function Contact() {
                     </form>
                 </div>
             </section>
+            <CTASection></CTASection>
         </div>
     );
 }

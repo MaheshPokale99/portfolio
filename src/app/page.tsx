@@ -4,6 +4,7 @@ import Heading from "../components/Elements/Heading";
 import { IconArrow }  from "../components/Elements/IconArrow";
 import Paragraph from "../components/Elements/Paragraph";
 import AboutMe from "../components/Sections/AboutMe";
+import Process from "../components/Sections/Process";
 
 export default function Home() {
   return (
@@ -38,15 +39,12 @@ export default function Home() {
             <MainButton name="Contact Now" variant="light" />
           </div>
         </div>
-
-        {/* Project Preview */}
-        <div id="projects" className="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {/* Project cards will be added here */}
-        </div>
       </section>
-
       {/* About Section */}
-      <AboutMe></AboutMe>
+      <AboutMe/>
+
+      {/* Process */}
+      <Process/>
     </main>
   );
 }
