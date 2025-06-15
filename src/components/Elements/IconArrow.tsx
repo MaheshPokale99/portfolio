@@ -1,55 +1,86 @@
 "use client";
 
 import { ArrowRight } from "phosphor-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
-export const IconArrow = () => {
+interface IconArrowProps {
+  label?: string;
+}
+
+export const IconArrow: React.FC<IconArrowProps> = ({ label = "" }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <motion.a
-      href="#aboutme"
-       onClick={(e) => {
-        e.preventDefault();
-        document.getElementById('aboutme')?.scrollIntoView({ behavior: 'smooth' });
-      }}
-      className="group relative w-[54px] h-[54px] rounded-full bg-[#0A0A0A]
-        shadow-[inset_0_2px_0_0_rgba(184,180,180,0.14)] flex justify-center items-center overflow-visible"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        type: "spring",
-        duration: 0.4,
-        bounce: 0.2,
-      }}
+    <motion.div
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="relative w-[54px] h-[54px]"
     >
-      {/* Original Arrow (goes up on hover) */}
-      <motion.div
-        className="absolute"
-        animate={{ y: 0, opacity: 1 }}
-        whileHover={{ y: -40, opacity: 0 }}
-        transition={{ duration: 0.3 }}
+      {/* Arrow Button */}
+      <motion.a
+        href="#aboutme"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById("aboutme")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className="group w-full h-full rounded-full bg-[#0A0A0A] shadow-[inset_0_2px_0_0_rgba(184,180,180,0.14)] flex justify-center items-center overflow-visible relative"
       >
-        <ArrowRight className="w-[25px] h-[28px] text-white -rotate-45" />
-      </motion.div>
+        <AnimatePresence mode="wait">
+          {!isHovered ? (
+            <motion.div
+              key="arrow-default"
+              initial={{ y: 0, opacity: 1 }}
+              exit={{ y: -30, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="absolute"
+            >
+              <ArrowRight className="text-white w-[25px] h-[28px] -rotate-45" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="arrow-hover"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -30, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="absolute"
+            >
+              <ArrowRight className="text-white w-[25px] h-[28px] -rotate-45" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.a>
 
-      {/* New Arrow (comes from below on hover) */}
-      <motion.div
-        className="absolute"
-        initial={{ y: 40, opacity: 0 }}
-        whileHover={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
-      >
-        <ArrowRight className="w-[25px] h-[28px] text-white rotate-0" />
-      </motion.div>
+      {/* Floating Label */}
 
-      {/* Label sliding in from the left */}
-      <motion.span
-        initial={{ opacity: 0, x: -60 }}
-        whileHover={{ opacity: 1, x: -80 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-white/60 text-sm pointer-events-none z-10 rotate-[-25deg] origin-left"
+      <motion.p
+        variants={{
+          initial: {
+            opacity: 0,
+            x: 0,
+            y: 0,
+            rotate: -36,
+          },
+          hover: {
+            opacity: 1,
+            x: -16,
+            y: 20,
+            rotate: -36,
+            transition: {
+              type: "spring",
+              duration: 0.4,
+              bounce: 0.2,
+            },
+          },
+        }}
+        initial="initial"
+        animate={isHovered ? "hover" : "initial"}
+        className="absolute top-4/5 left-[100%] text-[15px] text-white/60 z-50 origin-left pointer-events-none w-[80px]"
       >
-        (about me)
-      </motion.span>
-    </motion.a>
+        {label}
+      </motion.p>
+
+    </motion.div>
   );
 };

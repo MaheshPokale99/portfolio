@@ -27,9 +27,9 @@ export default function Home() {
         <div className="max-w-[1200px] w-full flex flex-col items-start gap-8">
           <HeadingButton heading={"Scrolling Starts the Story."} />
           <div className="flex flex-col gap-4 max-w-[600px] select-none">
-            <div className="flex items-center justify-start gap-4 overflow-hidden">
+            <div className="flex items-center justify-start gap-4 overflow-visible">
               <Heading first="Mahesh" second="Pokale" className="text-[44px] md:text-6xl lg:text-7xl max-w-screen-xl" />
-              <IconArrow />
+              <IconArrow label="(about me)"/>
             </div>
             <Paragraph para="I'm a full-stack developer with a strong DSA foundation, building real-time, scalable, and performance-driven web apps. Let's build something impactful." />
           </div>

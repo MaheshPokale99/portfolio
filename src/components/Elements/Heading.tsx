@@ -6,7 +6,7 @@ import React from "react";
 interface AnimatedTextProps {
   first?: string;
   second?: string;
-  className?: string; // Accept external styles for responsiveness
+  className?: string; 
 }
 
 const Heading: React.FC<AnimatedTextProps> = ({
@@ -22,7 +22,6 @@ const Heading: React.FC<AnimatedTextProps> = ({
       initial="hidden"
       animate="show"
       className={`flex flex-wrap items-baseline leading-tight tracking-tight font-light ${className}`}
-      style={{boxShadow:"0px 2px 0px 0px rgba(184,180,180,0.8)"}}
     >
       {words.map((word, index) => {
         const isSecond = index >= firstWordsCount;
