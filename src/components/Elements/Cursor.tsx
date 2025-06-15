@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useHover } from "../../context/HoverContext";
+
 
 const Cursor = () => {
+  const { hoveredText, setHoveredText } = useHover();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isInSection, setIsInSection] = useState(false);
 
@@ -62,13 +65,13 @@ const Cursor = () => {
       animate={{
         x: mousePosition.x - (isInSection ? 70 : 6),
         y: mousePosition.y - (isInSection ? 24 : 6),
-        width: isInSection ? 132 : 12,
-        height: isInSection ? 44 : 12,
+        width: hoveredText || isInSection ? 132 : 12,
+        height: hoveredText || isInSection ? 44 : 12,
         borderRadius: isInSection ? 40 : 40,
-        backgroundColor: isInSection
+        backgroundColor:hoveredText || isInSection
           ? "rgba(99, 99, 99, 0.3)"
           : "rgba(230, 230, 230, 1.0)",
-        backdropFilter: isInSection ? "blur(6px)" : "none",
+        backdropFilter: hoveredText || isInSection ? "blur(6px)" : "none",
         boxShadow: "0 0 20px 4px rgba(92,92,92,0.3)",
         opacity: 1
       }}
@@ -100,7 +103,7 @@ const Cursor = () => {
       }}
     >
       <AnimatePresence mode="wait">
-        {isInSection && (
+         {(hoveredText || isInSection) && (
           <motion.span
             key="text"
             initial={{ opacity: 0, scale: 0.85, filter: "blur(6px)" }}
@@ -119,7 +122,7 @@ const Cursor = () => {
               ease           
             }}
           >
-            View project
+           {hoveredText ? hoveredText : "View project"}
           </motion.span>
         )}
       </AnimatePresence>

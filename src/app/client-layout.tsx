@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import Cursor from "../components/Elements/Cursor";
 import Footer from "../components/Navigation/Footer";
 import Nav from "../components/Navigation/Nav";
+import BlurredBottom from "../components/Elements/BlurredBottom";
 
 interface ClientLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       <Nav />
       <Footer />
       <Cursor />
+      <BlurredBottom/>
     </>
   );
-} 
+}

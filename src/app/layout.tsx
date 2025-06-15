@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClientLayout } from "./client-layout";
+import { HoverProvider } from "../context/HoverContext";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black`}>
-        <ClientLayout>{children}</ClientLayout>
+        <HoverProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </HoverProvider>
       </body>
     </html>
   );

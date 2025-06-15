@@ -3,16 +3,19 @@ import React from 'react'
 import Logo from './Logo'
 import Link from 'next/link';
 import Image from 'next/image'
+import { useHover } from "../../context/HoverContext";
+
 
 import { TwitterIcon, InstagramIcon, LinkedinIcon, GitHubIcon, LeetCodeIcon } from '../Icons/SocialIcons'
 
 
-const Footer = () => {
+const Footer = () => {    
+    const { hoveredText, setHoveredText } = useHover();
     const navData = ["Services", "Projects", "Testimonials", "Contact"];
     const socialLinks = [
         { name: "GitHub", icon: <GitHubIcon />, href: "https://github.com/MaheshPokale99" },
         { name: "Linkedin", icon: <LinkedinIcon />, href: "https://www.linkedin.com/in/maheshpokale99/" },
-        { name: "Instagram", icon: <LeetCodeIcon />, href: "https://leetcode.com/u/Mahesh_pokale99/" },
+        { name: "Leetcode", icon: <LeetCodeIcon />, href: "https://leetcode.com/u/Mahesh_pokale99/" },
         { name: "Twitter", icon: <TwitterIcon />, href: "https://x.com/MPokale42883" },
         { name: "Instagram", icon: <InstagramIcon />, href: "https://www.instagram.com/maheshpokale99/" },
     ]
@@ -47,8 +50,10 @@ const Footer = () => {
                         <Link
                             key={index}
                             href={social.href}
-                            className="w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-[#111111] transition-colors duration-300"
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#0A0A0A] hover:bg-[#111111] transition-colors duration-300"
                             aria-label={social.name}
+                            onMouseEnter={() => setHoveredText(social.name)}
+                            onMouseLeave={() => setHoveredText(null)} 
                         >
                             {social.icon}
                         </Link>

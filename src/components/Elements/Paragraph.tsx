@@ -1,19 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import React from "react";
 
 interface ParagraphProps {
   para: string;
+  className?: string;
 }
 
-const Paragraph: React.FC<ParagraphProps> = ({ para }) => {
+const Paragraph: React.FC<ParagraphProps> = ({ para, className = "" }) => {
   const words = para.trim().split(" ").filter(Boolean);
 
   return (
     <motion.div
       initial="hidden"
       animate="show"
-      className="font-medium flex flex-wrap items-center text-[16px] leading-[2] text-white/60 text-justify"
+      className={`flex flex-wrap items-center text-white/60 text-justify leading-relaxed ${className}`}
     >
       {words.map((word, index) => (
         <motion.span

@@ -1,23 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
+import React from "react";
 
 interface AnimatedTextProps {
   first?: string;
   second?: string;
+  className?: string; // Accept external styles for responsiveness
 }
 
-const Heading: React.FC<AnimatedTextProps> = ({ first = "", second = "" }) => {
+const Heading: React.FC<AnimatedTextProps> = ({
+  first = "",
+  second = "",
+  className = "",
+}) => {
   const words = [...first.split(" "), ...second.split(" ")].filter(Boolean);
+  const firstWordsCount = first.trim().split(/\s+/).length;
 
   return (
     <motion.div
       initial="hidden"
       animate="show"
-      className="max-w-[496px] text-5xl md:text-7xl leading-tight font-normal tracking-tight flex flex-wrap items-baseline"
+      className={`flex flex-wrap items-baseline leading-tight tracking-tight font-normal ${className}`}
     >
       {words.map((word, index) => {
-        const isSecond = index >= first.split(" ").filter(Boolean).length;
+        const isSecond = index >= firstWordsCount;
         return (
           <motion.h1
             key={index}
@@ -29,7 +36,7 @@ const Heading: React.FC<AnimatedTextProps> = ({ first = "", second = "" }) => {
               delay: index * 0.08,
               bounce: 0.2,
             }}
-            className={`inline-block mr-3 ${
+            className={`inline-block mr-2 md:mr-3 whitespace-nowrap ${
               isSecond ? "text-white/60" : "text-white"
             }`}
           >

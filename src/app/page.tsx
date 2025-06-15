@@ -2,8 +2,8 @@ import HeadingButton from "../components/Buttons/HeadingButton";
 import MainButton from "../components/Buttons/MainButton";
 import Heading from "../components/Elements/Heading";
 import { IconArrow } from "../components/Elements/IconArrow";
-import LightSource from "../components/Elements/LightSource";
 import Paragraph from "../components/Elements/Paragraph";
+import AboutMe from "../components/Sections/AboutMe";
 
 export default function Home() {
   return (
@@ -28,7 +28,7 @@ export default function Home() {
           <HeadingButton heading={"Scrolling Starts the Story."} />
           <div className="flex flex-col gap-4 max-w-[600px] select-none">
             <div className="flex items-center justify-start gap-4 overflow-hidden">
-              <Heading first="Mahesh" second="Pokale" />
+              <Heading first="Mahesh" second="Pokale" className="text-[44px] md:text-6xl lg:text-7xl max-w-screen-xl" />
               <IconArrow />
             </div>
             <Paragraph para="I'm a full-stack developer with a strong DSA foundation, building real-time, scalable, and performance-driven web apps. Let's build something impactful." />
@@ -46,12 +46,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative z-10 w-full min-h-screen bg-[#0A0A0A] py-32 px-[40px]">
-        <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-8">About Me</h2>
-          {/* About content will be added here */}
-        </div>
-      </section>
+      <AboutMe></AboutMe>
     </main>
   );
 }
