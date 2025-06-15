@@ -21,7 +21,8 @@ const Heading: React.FC<AnimatedTextProps> = ({
     <motion.div
       initial="hidden"
       animate="show"
-      className={`flex flex-wrap items-baseline leading-tight tracking-tight font-normal ${className}`}
+      className={`flex flex-wrap items-baseline leading-tight tracking-tight font-light ${className}`}
+      style={{boxShadow:"0px 2px 0px 0px rgba(184,180,180,0.8)"}}
     >
       {words.map((word, index) => {
         const isSecond = index >= firstWordsCount;

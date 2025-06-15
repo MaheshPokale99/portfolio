@@ -1,7 +1,7 @@
 import HeadingButton from "../components/Buttons/HeadingButton";
 import MainButton from "../components/Buttons/MainButton";
 import Heading from "../components/Elements/Heading";
-import { IconArrow } from "../components/Elements/IconArrow";
+import { IconArrow }  from "../components/Elements/IconArrow";
 import Paragraph from "../components/Elements/Paragraph";
 import AboutMe from "../components/Sections/AboutMe";
 
